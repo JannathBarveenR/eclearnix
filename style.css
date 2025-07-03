@@ -1,0 +1,569 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, rgba(40, 0, 80, 0.8), rgba(20, 20, 20, 0.9)),
+                url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: rgba(0, 0, 50, 0.7);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    display: flex;
+    background: rgba(0, 0, 80, 0.8);
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 8px; /* Increased spacing */
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav button {
+    flex: 1;
+    padding: 12px 15px; /* More padding */
+    border: none;
+    background: rgba(0, 50, 100, 0.9);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    min-width: 120px; /* Slightly wider buttons */
+    border-radius: 6px; /* More rounded */
+    transition: background 0.3s ease, transform 0.2s ease; /* Add transform transition */
+    display: flex; /* Allow icon and text alignment */
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95em;
+}
+
+nav button i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+nav button:hover {
+    background: #002b5c; /* Darker hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+nav button.active {
+    background: #001f3f;
+    border-bottom: 3px solid #66b3ff; /* Highlight active tab */
+    transform: translateY(0); /* Ensure active button stays in place */
+}
+
+main {
+    max-width: 1100px; /* Wider main content area */
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px; /* More padding */
+    border-radius: 10px; /* More rounded */
+    backdrop-filter: blur(15px); /* Stronger blur */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6); /* More prominent shadow */
+    flex-grow: 1; /* Allow main to grow and push footer down if there was one */
+}
+
+section {
+    display: none;
+    animation: fadeIn 0.7s ease-out; /* Fade in animation for sections */
+}
+
+section.active {
+    display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Form Elements */
+label {
+    display: block;
+    margin-top: 15px; /* More space */
+    color: #e0e0e0; /* Lighter white */
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+input, select, textarea {
+    width: calc(100% - 20px); /* Account for padding */
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    font-size: 1em;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.95); /* Almost opaque */
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.3); /* Focus ring */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button.submit-btn {
+    margin-top: 20px;
+    padding: 14px 30px;
+    background: #0056b3; /* Primary blue */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.15em;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button.submit-btn:hover {
+    background: #004085; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    border: 1px solid #ddd; /* Lighter border */
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #004085;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f0f0; /* Zebra striping */
+}
+tr:hover {
+    background-color: #e8e8e8; /* Hover effect for rows */
+}
+
+/* Status Colors */
+.approved { color: green; font-weight: bold; }
+.rejected { color: red; font-weight: bold; }
+.pending { color: orange; font-weight: bold; }
+.completed { color: #28a745; font-weight: bold; } /* Darker green */
+.in-progress { color: #007bff; font-weight: bold; } /* Brighter blue */
+.on-hold { color: #6f42c1; font-weight: bold; } /* Purple */
+.assigned { color: teal; font-weight: bold; }
+.resolved { color: #28a745; font-weight: bold; }
+.closed { color: #6c757d; font-weight: bold; } /* Grey for closed */
+.escalated { color: #dc3545; font-weight: bold; } /* Red for escalated */
+
+/* Notifications */
+#notifications {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notif {
+    background: #fff3cd;
+    padding: 12px;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    color: #856404;
+    animation: fadeIn 0.5s ease-out;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    min-width: 250px;
+}
+.notif.success {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+.notif.error {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+.notif.info {
+    background: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+}
+.notif.warning {
+    background: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+
+/* Auth Area */
+#loginForm, #registerForm {
+    max-width: 450px; /* Slightly wider forms */
+    margin: 50px auto; /* More margin */
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px; /* More padding */
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.8s ease-out;
+}
+
+#loginForm h2, #registerForm h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* User Info Bar */
+#userInfo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 20px;
+    background: rgba(0, 0, 50, 0.7); /* Match header for continuity */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    flex-wrap: wrap;
+    gap: 15px; /* More space */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#userInfo span {
+    font-weight: bold;
+    color: #add8e6; /* Light blue for key info */
+}
+
+.logout-btn {
+    color: white;
+    background-color: #dc3545; /* Red */
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 0.95em;
+}
+.logout-btn:hover { background-color: #c82333; transform: translateY(-1px); }
+
+.reset-btn {
+    background-color: #ffc107; /* Warning yellow */
+    color: #333;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 0.95em;
+}
+.reset-btn:hover { background-color: #e0a800; transform: translateY(-1px); }
+
+
+/* Action Buttons within tables/cards */
+.edit-btn, .delete-btn, .action-btn {
+    padding: 8px 15px; /* More padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px; /* More spacing */
+    font-size: 0.9em;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.edit-btn { background-color: #007bff; color: white; }
+.edit-btn:hover { background-color: #0056b3; transform: translateY(-1px); }
+
+.delete-btn { background-color: #dc3545; color: white; }
+.delete-btn:hover { background-color: #c82333; transform: translateY(-1px); }
+
+.action-btn { background-color: #28a745; color: white; }
+.action-btn:hover { background-color: #218838; transform: translateY(-1px); }
+
+a {
+    color: #90ee90; /* Light green for links */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #76c776;
+}
+
+/* Card/Panel Styling for interactive content */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; /* Space between cards */
+    margin-top: 20px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.3); /* Darker transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.6s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.card h4 {
+    margin-top: 0;
+    color: #add8e6;
+    font-size: 1.3em;
+}
+
+.card p {
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #e0e0e0;
+    flex-grow: 1; /* Allow paragraph to take available space */
+}
+
+.card .actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Progress Bar */
+.progress-container {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    height: 20px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #4CAF50, #8BC34A); /* Green gradient */
+    border-radius: 10px;
+    width: 0%; /* Initial width */
+    transition: width 0.8s ease-in-out; /* Smooth transition for progress */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+/* Checkbox styling for Onboarding */
+input[type="checkbox"] {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid #0056b3;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    vertical-align: middle;
+    margin-right: 10px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+input[type="checkbox"]::after {
+    content: '\2713'; /* Checkmark character */
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+input[type="checkbox"]:checked::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Grievance Status Icon */
+.grievance-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0,0,0,0.3);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.grievance-item:hover {
+    background: rgba(0,0,0,0.4);
+    transform: translateX(5px);
+}
+.grievance-item i {
+    font-size: 2em;
+    color: #add8e6;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); /* Dark semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background: rgba(0, 0, 50, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    position: relative;
+    animation: slideInFromTop 0.4s ease-out;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+@keyframes slideInFromTop {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #ccc;
+}
+
+.modal-content h3 {
+    color: #add8e6;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 10px;
+}
+
+.modal-content p {
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.policy-content {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #c0c0c0;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal .submit-btn {
+    display: block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    nav button {
+        min-width: unset; /* Remove min-width for vertical stacking */
+        width: 100%; /* Full width buttons */
+    }
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+    #loginForm, #registerForm {
+        padding: 20px;
+        margin: 20px auto;
+    }
+    #userInfo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px 15px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}
